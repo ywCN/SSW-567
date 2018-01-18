@@ -6,8 +6,13 @@ class TriangleClassification:
         self.sides = []
         for argument in arg:
             self.sides.append(argument)
-        self.types = {'invalid input': 'not valid. Please check your input',
-                      }
+        self.types = {'equilateral': 'equilateral',
+                      'isosceles': 'isosceles',
+                      'scalene': 'scalene',
+                      'isosceles and right': 'isosceles and right',
+                      'scalene and right': 'scalene and right',
+                      'not valid': 'not valid',
+                      'invalid input': 'not valid. Please check your input'}
 
     def validate_input(self):
         if len(self.sides) != 3:
@@ -51,17 +56,16 @@ class TriangleClassification:
         b = self.sides[1]
         c = self.sides[2]
 
-        triangle_types = ''
         if a == b and b == c:
-            triangle_types += 'equilateral'
+            triangle_types = self.types['equilateral']
         elif a == b or b == c:
-            triangle_types += 'isosceles'
+            triangle_types = self.types['isosceles']
             if self.check_right(a, b, c):
-                triangle_types += ' and right'
+                triangle_types = self.types['isosceles and right']
         else:
-            triangle_types += 'scalene'
+            triangle_types = self.types['scalene']
             if self.check_right(a, b, c):
-                triangle_types += ' and right'
+                triangle_types = self.types['scalene and right']
 
         return triangle_types
 
