@@ -1,5 +1,6 @@
 import unittest
 
+
 class TriangleClassification:
     def __init__(self, a=None, b=None, c=None):
         self.sides = [a, b, c]
@@ -68,23 +69,34 @@ class TriangleClassification:
 
 class TestTriangleClassification(unittest.TestCase):
     def test_classify_triangle(self):
-        triangle1 = TriangleClassification(1, 2, 3)
-        print(triangle1.classify_triangle())
-        TriangleClassification(2, 2, 3)
-        TriangleClassification(4, 5, 6)
-        TriangleClassification(1, 1, 1.414213)
-        TriangleClassification(3, 4, 5)
+        t0 = TriangleClassification(1, 1, 1)
+        self.assertEqual(t0.classify_triangle(), 'equilateral')
+
+        t1 = TriangleClassification(1, 2, 3)
+        self.assertEqual(t1.classify_triangle(), 'not valid')
+
+        t2 = TriangleClassification(2, 2, 3)
+        self.assertEqual(t2.classify_triangle(), 'isosceles')
+
+        t3 = TriangleClassification(4, 5, 6)
+        self.assertEqual(t3.classify_triangle(), 'scalene')
+
+        t4 = TriangleClassification(1, 1, 1.414213)
+        self.assertEqual(t4.classify_triangle(), 'isosceles and right')
+
+        t5 = TriangleClassification(3, 4, 5)
+        self.assertEqual(t5.classify_triangle(), 'scalene and right')
 
 
-def main():
-    TriangleClassification(1, 2, 3).run()
-    TriangleClassification(2, 2, 3).run()
-    TriangleClassification(4, 5, 6).run()
-    TriangleClassification(1, 1, 1.414213).run()
-    TriangleClassification(3, 4, 5).run()
+# def main():
+#     TriangleClassification(1, 2, 3).run()
+#     TriangleClassification(2, 2, 3).run()
+#     TriangleClassification(4, 5, 6).run()
+#     TriangleClassification(1, 1, 1.414213).run()
+#     TriangleClassification(3, 4, 5).run()
 
 
 if __name__ == '__main__':
-    main()
+    # main()
     unittest.main()
 
