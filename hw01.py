@@ -12,8 +12,11 @@ class TriangleClassification:
         elements = self.user_input.split(',')
         parsed = []
 
-        for element in elements:
-            parsed.append(float(element.strip()))
+        try:
+            for element in elements:
+                parsed.append(float(element.strip()))
+        except ValueError:
+            raise Exception('Please enter numbers.')
 
         return sorted(parsed)
 
@@ -29,6 +32,7 @@ class TriangleClassification:
         a = self.sides[0]
         b = self.sides[1]
         c = self.sides[2]
+
         triangle_types = ''
         if a == b and b == c:
             triangle_types += 'equilateral'
@@ -37,15 +41,9 @@ class TriangleClassification:
         else:
             triangle_types += 'scalene'
             if round(a * a, 6) + round(b * b, 6) == round(c * c, 6):
-                triangle_types += 'and right'
+                triangle_types += ' and right'
 
-        return triangle_types
-
-    def run(self):
-        """
-        driver function
-        :return: None
-        """
+        print('Your triangle is ' + triangle_types + '.')
 
 
 def main():
