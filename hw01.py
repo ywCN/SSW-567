@@ -51,7 +51,7 @@ class TriangleClassification:
             triangle_types += 'isosceles'
         else:
             triangle_types += 'scalene'
-            if round(a * a, 6) + round(b * b, 6) == round(c * c, 6):
+            if round(a * a, 2) + round(b * b, 6) == round(c * c, 6):
                 triangle_types += ' and right'
 
         return triangle_types
@@ -66,6 +66,15 @@ class TriangleClassification:
         print('Your triangle is ' + triangle_types + '.')
 
 
+class TestTriangle(unittest.TestCase):
+    def test_parse_input(self):
+
+
+
+class TriangleClassification(unittest.TestCase):
+
+
+
 def main():
     demo = TriangleClassification()
     demo.run()
@@ -73,4 +82,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+    unittest.main()
 
