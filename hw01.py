@@ -32,7 +32,6 @@ class TriangleClassification:
             return 'not valid'
 
         self.parse_input()
-        print(self.sides)
 
         if not self.validate_sides():
             return 'not valid'
