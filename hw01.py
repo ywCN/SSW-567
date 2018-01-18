@@ -2,12 +2,20 @@ import unittest
 
 
 class TriangleClassification:
-    def __init__(self, a=None, b=None, c=None):
-        self.sides = [a, b, c]
+    def __init__(self, *arg):
+        self.sides = []
+        for argument in arg:
+            self.sides.append(argument)
+        self.types = {'invalid input': 'not valid. Please check your input',
+                      }
 
     def validate_input(self):
-        if None in self.sides:
+        if len(self.sides) != 3:
             return False
+        for element in self.sides:
+            if element <= 0:
+                return False
+
         return True
 
     def parse_input(self):
@@ -28,8 +36,11 @@ class TriangleClassification:
         return False
 
     def classify_triangle(self):
-        if not self.validate_input():
-            return 'not valid'
+        try:
+            if not self.validate_input():
+                return self.types['invalid input']
+        except TypeError:
+            return self.types['invalid input']
 
         self.parse_input()
 
@@ -85,6 +96,16 @@ class TestTriangleClassification(unittest.TestCase):
 
         t5 = TriangleClassification(3, 4, 5)
         self.assertEqual(t5.classify_triangle(), 'scalene and right')
+
+        t6 = TriangleClassification(3, 4, 5, 6)
+        self.assertEqual(t6.classify_triangle(), 'not valid. Please check your input')
+
+        t7 = TriangleClassification(1, 2)
+        self.assertEqual(t7.classify_triangle(), 'not valid. Please check your input')
+
+        t8 = TriangleClassification('a', 'b')
+        self.assertEqual(t8.classify_triangle(), 'not valid. Please check your input')
+
 
 
 # def main():
