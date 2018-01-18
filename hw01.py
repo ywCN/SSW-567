@@ -28,15 +28,13 @@ class TriangleClassification:
 
     def classify_triangle(self):
         if not self.validate_input():
-            return False
+            return 'not valid'
 
         self.parse_input()
-        # print(self.sides)
-
-        if not self.validate_sides():
-            return False
         print(self.sides)
 
+        if not self.validate_sides():
+            return 'not valid'
 
         a = self.sides[0]
         b = self.sides[1]
@@ -68,17 +66,25 @@ class TriangleClassification:
             print('Your triangle is ' + triangle_types + '.')
 
 
-# class TestTriangleClassification(unittest.TestCase):
-#     def test
-
+class TestTriangleClassification(unittest.TestCase):
+    def test_classify_triangle(self):
+        triangle1 = TriangleClassification(1, 2, 3)
+        print(triangle1.classify_triangle())
+        TriangleClassification(2, 2, 3)
+        TriangleClassification(4, 5, 6)
+        TriangleClassification(1, 1, 1.414213)
+        TriangleClassification(3, 4, 5)
 
 
 def main():
-    demo = TriangleClassification(1, 2, 3)
-    demo.run()
+    TriangleClassification(1, 2, 3).run()
+    TriangleClassification(2, 2, 3).run()
+    TriangleClassification(4, 5, 6).run()
+    TriangleClassification(1, 1, 1.414213).run()
+    TriangleClassification(3, 4, 5).run()
 
 
 if __name__ == '__main__':
     main()
-    # unittest.main()
+    unittest.main()
 
