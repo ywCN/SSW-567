@@ -107,9 +107,11 @@ class TestTriangleClassification(unittest.TestCase):
         t7 = TriangleClassification(1, 2)
         self.assertEqual(t7.classify_triangle(), 'not valid. Please check your input')
 
-        t8 = TriangleClassification('a', 'b')
+        t8 = TriangleClassification('1', '2')
         self.assertEqual(t8.classify_triangle(), 'not valid. Please check your input')
 
+        t9 = TriangleClassification('1', '2', '3')
+        self.assertEqual(t9.classify_triangle(), 'not valid. Please check your input')
 
 
 # def main():
