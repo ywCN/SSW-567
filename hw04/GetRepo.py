@@ -9,7 +9,9 @@ def get_repo_info(user_name='ywang567'):
     repos = json.loads(res.text)
     output.append('User: {}'.format(user_name))
 
-    if not validate_user_response(repos):
+    try:
+        repos[0]['name']
+    except TypeError:
         return 'unable to fetch repos from user'
 
     try:
@@ -23,14 +25,6 @@ def get_repo_info(user_name='ywang567'):
         return 'unable to fetch commits from repo'
 
     return output
-
-
-def validate_user_response(repos):
-    try:
-        repos[0]['name']
-    except TypeError:
-        return False
-    return True
 
 
 if __name__ == '__main__':
