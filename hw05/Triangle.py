@@ -1,4 +1,10 @@
-def classify_triangle(a, b, c):
+"""
+This file will validate input and return a string triangle type.
+"""
+def classify_triangle(side_a, side_b, side_c):
+    """
+    This function accepts 3 inputs and returns a string triangle type.
+    """
     types = {'equilateral': 'equilateral',
              'isosceles': 'isosceles',
              'scalene': 'scalene',
@@ -6,7 +12,7 @@ def classify_triangle(a, b, c):
              'scalene and right': 'scalene and right',
              'not valid': 'not valid',
              'not a triangle': 'not a triangle'}
-    sides = [a, b, c]
+    sides = [side_a, side_b, side_c]
     try:
         if not validate_input(sides):
             return types['not valid']
@@ -18,25 +24,28 @@ def classify_triangle(a, b, c):
     if not validate_sides(sides):
         return types['not a triangle']
 
-    a = sides[0]
-    b = sides[1]
-    c = sides[2]
+    side_a = sides[0]
+    side_b = sides[1]
+    side_c = sides[2]
 
-    if a == b and b == c:
+    if side_a == side_b and side_b == side_c:
         triangle_types = types['equilateral']
-    elif a == b or b == c:
+    elif side_a == side_b or side_b == side_c:
         triangle_types = types['isosceles']
-        if check_right(a, b, c):
+        if check_right(side_a, side_b, side_c):
             triangle_types = types['isosceles and right']
     else:
         triangle_types = types['scalene']
-        if check_right(a, b, c):
+        if check_right(side_a, side_b, side_c):
             triangle_types = types['scalene and right']
 
     return triangle_types
 
 
 def validate_input(sides):
+    """
+    check input range
+    """
     for element in sides:
         if element <= 0 or element > 2147483648:
             return False
@@ -45,6 +54,9 @@ def validate_input(sides):
 
 
 def parse_input(sides):
+    """
+    convert input to float
+    """
     parsed = []
     for element in sides:
         parsed.append(float(element))
@@ -52,12 +64,18 @@ def parse_input(sides):
 
 
 def validate_sides(sides):
+    """
+    check if can be a triangle
+    """
     if sides[0] + sides[1] <= sides[2]:
         return False
     return True
 
 
-def check_right(a, b, c):
-    if round(a * a, 2) + round(b * b, 2) == round(c * c, 2):
+def check_right(side_a, side_b, side_c):
+    """
+    check if it is a right triangle
+    """
+    if round(side_a * side_a, 2) + round(side_b * side_b, 2) == round(side_c * side_c, 2):
         return True
     return False
